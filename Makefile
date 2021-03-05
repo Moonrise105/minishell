@@ -39,7 +39,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C $(DIR_LIBFT) -j 4
-	@$(CC) -o $@ $^ $(DIR_LIBFT)/libft.a
+	@$(CC) -o $@ $^ $(DIR_LIBFT)/libft.a -ltermcap
 
 $(DIR_O)/%.o: $(DIR_S)/%.c $(HEADER)/minishell_new.h
 	@mkdir -p $(DIR_O)

@@ -4,7 +4,7 @@ int		find_file(DIR *dir, char *file)
 {
 	struct	dirent *f;
 
-	if (dir)
+	if (dir && file)
 	{
 		while ((f = readdir(dir)))
 		{

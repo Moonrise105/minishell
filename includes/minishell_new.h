@@ -9,6 +9,8 @@
 # include "parser.h"
 # include "errno.h"
 # include <sys/stat.h>
+# include <termcap.h>
+# include <termios.h>
 extern int status;
 typedef struct			s_pair
 {
@@ -73,6 +75,9 @@ char	*parse_dirs(char **dirs, char *file);
 
 //env
 t_list		*env_get(t_list **nw);
+int			env_f(char **av, int dec);
+int		export(char **av);
+int		unset(char **av);
 
 //pipe
 int		pipe_count(t_list *commands);
@@ -87,5 +92,6 @@ void	parse_args(t_list *args);
 //utils
 t_list *skip_jmps(t_list *commands, char *jmps);
 void	lst_free(t_list **lst);
-
+char	**split_f(char *s, char c);
+int		my_exit(char **args);
 #endif

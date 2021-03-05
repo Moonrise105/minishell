@@ -6,7 +6,9 @@ int		is_builtin(char *cmd)
 	
 	code = 0;
 	if (!ft_strcmp(cmd, "echo") || !ft_strcmp(cmd, "pwd") ||
-		!ft_strcmp(cmd, "cd"))
+		!ft_strcmp(cmd, "cd") || !ft_strcmp(cmd, "env") ||
+		!ft_strcmp(cmd, "export") || !ft_strcmp(cmd, "unset") ||
+		!ft_strcmp(cmd, "exit"))
 		code = 1;
 	return (code);
 }
@@ -16,9 +18,15 @@ int		get_cmd_exec_type(char *cmd)
 	int type;
 	t_list *env;
 	char **path;
+	t_pair *path_pair;
 
 	env = env_get(NULL);
-	path = ft_split(dict_get(env, "PATH")->value, ':');
+	path_pair = dict_get(env, "PATH");
+	if (path_pair)
+		path = ft_split(path_pair->value, ':');
+	else
+		path = NULL;
+	//printf("%s\n", path[0]);
 	if (is_builtin(cmd))
 		type = BULTIN_TYPE;
 	else if (!ft_strncmp(cmd, "./", 2) ||
@@ -30,7 +38,8 @@ int		get_cmd_exec_type(char *cmd)
 		type = BIN_TYPE;
 	else
 		type = ERROR_TYPE;
-	free_array_char(path);
+	if (path)
+		free_array_char(path);
 	return (type);
 }
 
@@ -69,6 +78,14 @@ int     builtin_exec(t_command *command)
 		code = pwd(args + 1);
 	else if (!ft_strcmp("cd", command->args->content))
 		code = cd(args + 1);
+	else if (!ft_strcmp("env", command->args->content))
+		code = env_f(args + 1, 0);
+	else if (!ft_strcmp("export", command->args->content))
+		code = export(args + 1);
+	else if (!ft_strcmp("unset", command->args->content))
+		code = unset(args + 1);
+	else if (!ft_strcmp("exit", command->args->content))
+		code = my_exit(args + 1);
     free_array_char(args);
     return (code);
 }
@@ -76,13 +93,16 @@ int     builtin_exec(t_command *command)
 
 int		execute_path(char *path, char **args, char **env, char *cmd_name)
 {
+	int code;
 	errno = 0;
+	code = 0;
 	if (execve(path, args, env) < 0)
 	{
 		prefix_command(cmd_name);
 		perror(" ");
+		code = 127;
 	}
-	return (0);
+	return (code);
 }
 
 int		path_exec(t_command *command)
@@ -180,7 +200,6 @@ int		fork_exec(t_command *command, int *dup_fd)
 			dup2(dup_fd[1], 1);
 		if (dup_fd && dup_fd[0])
 			dup2(dup_fd[0], 0);
-		//EXECUTE COMMAND
 		exit(execute_in(command));
 	}
 	else

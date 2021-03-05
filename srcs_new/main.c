@@ -46,7 +46,7 @@ void    shell(char **env)
         {
             dict_free(&dict);
             commands_free(&parser_struct.commands);
-            exit(0);
+            my_exit(NULL);
         }
             
         if (parser_check(parser_struct.commands) >= 0)
