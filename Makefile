@@ -34,8 +34,7 @@ SOURCES =	dict.c \
 			redirects.c \
 			dirs.c \
 			arg_parser.c
-			
-			
+
 SRCS = $(addprefix $(DIR_S)/, $(SOURCES))
 
 OBJS = $(addprefix $(DIR_O)/, $(SOURCES:.c=.o))
