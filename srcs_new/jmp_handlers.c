@@ -19,11 +19,11 @@ t_list	*pipe_handler(t_list *commands)
 	if (pid > 0)
 	{
 		signal(SIGINT, sig_int);
-		waitpid(-1, &status, 0);
-		if (WIFSIGNALED(status))
-			status = WTERMSIG(status) + 128;
+		waitpid(-1, &g_status, 0);
+		if (WIFSIGNALED(g_status))
+			g_status = WTERMSIG(g_status) + 128;
 		else
-			status = WEXITSTATUS(status);
+			g_status = WEXITSTATUS(g_status);
 		return (skip_jmps(commands, "123"));
 	}
 	else if (pid == 0)

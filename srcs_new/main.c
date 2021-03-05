@@ -1,6 +1,6 @@
 #include "minishell_new.h"
 
-int status = 0;
+int g_status = 0;
 
 void	shell_newline()
 {

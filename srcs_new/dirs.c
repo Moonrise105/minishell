@@ -69,6 +69,9 @@ int		cd(char **args)
 			ft_putstr_fd("\n", 1);
 		}
 	}
+	if (dir)
+		free(dir);
+	//path = NULL;
 	return (0);
 }
 
@@ -80,6 +83,6 @@ int		pwd(char **args)
 	ft_putstr(dir);
 	ft_putstr("\n");
 	//free(dir);
-	status = 0;
+	g_status = 0;
 	return (0);
 }

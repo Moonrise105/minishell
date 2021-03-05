@@ -11,7 +11,7 @@
 # include <sys/stat.h>
 # include <termcap.h>
 # include <termios.h>
-extern int status;
+extern int g_status;
 typedef struct			s_pair
 {
 	char				*key;

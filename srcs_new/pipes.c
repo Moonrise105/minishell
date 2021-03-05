@@ -22,11 +22,11 @@ void	pipe_first(t_list *commands, int *pipe_fd)
 
 	command = commands->content;
 	close(pipe_fd[1]);
-	waitpid(-1, &status, 0);
-	if (WIFSIGNALED(status))
-			status = WTERMSIG(status) + 128;
+	waitpid(-1, &g_status, 0);
+	if (WIFSIGNALED(g_status))
+			g_status = WTERMSIG(g_status) + 128;
 	else
-		status = WEXITSTATUS(status);
+		g_status = WEXITSTATUS(g_status);
 	if (ft_strchr("23", command->jmp_type + '0'))
 	{
 		dup2(pipe_fd[0], 0);
@@ -50,11 +50,11 @@ void	pipe_in(t_command *command, int *pipe_fd, int *pipe_fd_new)
 {
 	close(pipe_fd[0]);
 	close(pipe_fd_new[1]);
-	waitpid(-1, &status, 0);
-	if (WIFSIGNALED(status))
-		status = WTERMSIG(status) + 128;
+	waitpid(-1, &g_status, 0);
+	if (WIFSIGNALED(g_status))
+		g_status = WTERMSIG(g_status) + 128;
 	else
-		status = WEXITSTATUS(status);
+		g_status = WEXITSTATUS(g_status);
 	dup2(pipe_fd_new[0], 0);
 	dup2(pipe_fd[1], 1);
 	exit(execute_in(command));

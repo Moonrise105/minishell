@@ -27,7 +27,9 @@ int		get_cmd_exec_type(char *cmd)
 	else
 		path = NULL;
 	//printf("%s\n", path[0]);
-	if (is_builtin(cmd))
+	if (!ft_strcmp(cmd, ".") || !ft_strcmp(cmd, ".."))
+		type = ERROR_TYPE;
+	else if (is_builtin(cmd))
 		type = BULTIN_TYPE;
 	else if (!ft_strncmp(cmd, "./", 2) ||
 			!ft_strncmp(cmd, "../", 3) ||
@@ -171,7 +173,7 @@ int		execute_in(t_command *command)
 		ft_putstr_fd(": command not found\n", 2);
 		code = 127;
 	}
-	status = code;
+	g_status = code;
 	return (code);
 }
 
@@ -183,11 +185,11 @@ int		fork_exec(t_command *command, int *dup_fd)
 	if (pid > 0)
 	{
 		signal(SIGINT, sig_int);
-		waitpid(-1, &status, 0);
-		if (WIFSIGNALED(status))
-			status = WTERMSIG(status) + 128;
+		waitpid(-1, &g_status, 0);
+		if (WIFSIGNALED(g_status))
+			g_status = WTERMSIG(g_status) + 128;
 		else
-			status = WEXITSTATUS(status);
+			g_status = WEXITSTATUS(g_status);
 		if (dup_fd && dup_fd[0])
 			close(dup_fd[0]);
 		if (dup_fd && dup_fd[1])

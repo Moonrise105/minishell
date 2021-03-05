@@ -12,6 +12,7 @@ int     manager(t_list *commands)
 
     while (commands)
     {
+		signal(SIGINT, SIG_DFL);
         command = commands->content;
         if (command->jmp_type == 0 || command->jmp_type == -1)
         {

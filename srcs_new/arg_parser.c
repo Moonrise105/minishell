@@ -66,7 +66,7 @@ void	str_sub(t_list **lst, char *s, int *i)
 		val = ft_substr(s, start, *i - start + 1);
 		if (!ft_strcmp(val, "?"))
 		{
-			number = ft_itoa(status);
+			number = ft_itoa(g_status);
 			str_add(lst, number);
 			free(number);
 		}

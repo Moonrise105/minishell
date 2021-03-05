@@ -14,7 +14,7 @@ void	signal_interrupt(int signal)
 {
 	ft_putstr("\b\b  \b\b");
 	ft_putstr("\n");
-	status = 1;
+	g_status = 1;
 	shell_newline();
 }
 

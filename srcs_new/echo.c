@@ -39,7 +39,7 @@ int		echo(char **av)
 		}
 		if (n)
 			ft_putstr("\n");
-		status = 0;
+		g_status = 0;
 	}
 	
 	return (0);
