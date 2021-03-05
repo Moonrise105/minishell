@@ -31,7 +31,7 @@ t_list	*pipe_handler(t_list *commands)
 		my_pipe(commands, count, 0, pipe_fd);
 	}
 	else;
-	
+	return (NULL);
 }
 
 t_list    *right_redir_handler(t_list *commands, int *pipe_fd, int prev_jmp)
