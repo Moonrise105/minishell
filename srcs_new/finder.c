@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   finder.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/05 20:07:42 by ctobias           #+#    #+#             */
+/*   Updated: 2021/03/05 20:08:21 by ctobias          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell_new.h"
 
 int		find_file(DIR *dir, char *file)
 {
-	struct	dirent *f;
+	struct dirent	*f;
 
 	if (dir && file)
 	{
@@ -37,7 +49,3 @@ char	*parse_dirs(char **dirs, char *file)
 	}
 	return (NULL);
 }
-
-
-
-

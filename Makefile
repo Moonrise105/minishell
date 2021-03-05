@@ -13,7 +13,9 @@ DIR_S = srcs_new
 
 DIR_O = objs
 
-SOURCES =	dict.c \
+SOURCES =	dict/dict_00.c \
+			dict/dict_01.c \
+			dict/dict_02.c \
 			main.c \
 			parser/parser.c \
 			parser/add_parser.c \
@@ -46,7 +48,7 @@ $(NAME): $(OBJS)
 	@$(CC) -o $@ $^ $(DIR_LIBFT)/libft.a -ltermcap
 
 $(DIR_O)/%.o: $(DIR_S)/%.c $(HEADER)/minishell_new.h
-	@mkdir -p $(DIR_O) $(DIR_O)/parser $(DIR_O)/parser/utils
+	@mkdir -p $(DIR_O) $(DIR_O)/parser $(DIR_O)/parser/utils $(DIR_O)/dict
 	@$(CC) $(FLAGS_C) -I $(HEADER) -c $< -o $@
 
 clean:

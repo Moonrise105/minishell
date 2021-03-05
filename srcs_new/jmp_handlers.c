@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   jmp_handlers.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/05 20:02:51 by ctobias           #+#    #+#             */
+/*   Updated: 2021/03/05 20:07:21 by ctobias          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell_new.h"
 
-int    semicolon_handler(t_command *command)
+int			semicolon_handler(t_command *command)
 {
-    int code;
+	int		code;
 
-    code = execute_handler(command);
-    return (code);
+	code = execute_handler(command);
+	return (code);
 }
 
-t_list	*pipe_handler(t_list *commands)
+t_list		*pipe_handler(t_list *commands)
 {
 	int pid;
 	int count;
@@ -27,14 +39,11 @@ t_list	*pipe_handler(t_list *commands)
 		return (skip_jmps(commands, "123"));
 	}
 	else if (pid == 0)
-	{
 		my_pipe(commands, count, 0, pipe_fd);
-	}
-	else;
 	return (NULL);
 }
 
-t_list    *right_redir_handler(t_list *commands, int *pipe_fd, int prev_jmp)
+t_list		*right_redir_handler(t_list *commands, int *pipe_fd, int prev_jmp)
 {
 	t_command	*command;
 	t_command	*first_cmd;
@@ -44,38 +53,33 @@ t_list    *right_redir_handler(t_list *commands, int *pipe_fd, int prev_jmp)
 
 	command = commands->content;
 	first_cmd = command;
-	//prev_command = first_cmd;
 	commands = skip_jmps(commands, "4");
 	prev_command = commands->content;
 	commands = commands->next;
 	command = commands->content;
-	
 	while (commands)
 	{
-		
 		if (ft_strchr("23", command->jmp_type + '0'))
 		{
-			fd = open(command->args->content, O_RDWR|O_CREAT|O_TRUNC, 0644);
+			fd = open(command->args->content, O_RDWR | O_CREAT | O_TRUNC, 0644);
 			close(fd);
 		}
 		else
 		{
 			if (prev_command->jmp_type == 2)
-				fd = open(command->args->content, O_RDWR|O_CREAT|O_TRUNC, 0644);
+				fd = open(command->args->content, O_RDWR | O_CREAT | O_TRUNC, 0644);
 			else
-				fd = open(command->args->content, O_RDWR|O_APPEND|O_CREAT, 0644);
-			if (pipe_fd && prev_jmp == 1) //after pipes
+				fd = open(command->args->content, O_RDWR | O_APPEND | O_CREAT, 0644);
+			if (pipe_fd && prev_jmp == 1)
 			{
 				dup2(fd, 1);
 				execute_in(first_cmd);
 				close(fd);
-				
 			}
-			else if (pipe_fd && prev_jmp == 4) //after <
+			else if (pipe_fd && prev_jmp == 4)
 			{
 				pipe_fd[1] = fd;
 				fork_exec(first_cmd, pipe_fd);
-				//free(pipe_fd);
 			}
 			else
 			{
@@ -85,8 +89,6 @@ t_list    *right_redir_handler(t_list *commands, int *pipe_fd, int prev_jmp)
 				fork_exec(first_cmd, pipe_fd);
 				free(pipe_fd);
 			}
-			// if (pipe_fd && pipe_fd[0])
-			// 	close(pipe_fd[0]);
 			close(fd);
 			return (commands);
 		}
@@ -95,12 +97,9 @@ t_list    *right_redir_handler(t_list *commands, int *pipe_fd, int prev_jmp)
 		commands = commands->next;
 		command = commands->content;
 	}
-	
-	//if (pipe_fd)
-		//close(pipe_fd)
 }
 
-t_list    *left_redir_handler(t_list *commands)
+t_list		*left_redir_handler(t_list *commands)
 {
 	t_command	*command;
 	t_command	*first_cmd;
