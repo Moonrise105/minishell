@@ -15,7 +15,12 @@ DIR_O = objs
 
 SOURCES =	dict.c \
 			main.c \
-			my_parser.c \
+			parser/parser.c \
+			parser/add_parser.c \
+			parser/check_parser.c \
+			parser/free_parser.c \
+			parser/utils/utils_00_parser.c \
+			parser/utils/utils_01_parser.c \
 			manager.c \
 			execute.c \
 			jmp_handlers.c \
@@ -42,7 +47,7 @@ $(NAME): $(OBJS)
 	@$(CC) -o $@ $^ $(DIR_LIBFT)/libft.a
 
 $(DIR_O)/%.o: $(DIR_S)/%.c $(HEADER)/minishell_new.h
-	@mkdir -p $(DIR_O)
+	@mkdir -p $(DIR_O) $(DIR_O)/parser $(DIR_O)/parser/utils
 	@$(CC) $(FLAGS_C) -I $(HEADER) -c $< -o $@
 
 clean:
