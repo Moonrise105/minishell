@@ -37,7 +37,6 @@ SOURCES =	dict/dict_00.c \
 			utils_00.c \
 			redirects.c \
 			cd.c \
-			arg_parser.c \
 			builtins.c
 
 SRCS = $(addprefix $(DIR_S)/, $(SOURCES))
