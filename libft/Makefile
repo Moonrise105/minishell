@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+         #
+#    By: olydden <olydden@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/30 16:02:34 by olydden           #+#    #+#              #
-#    Updated: 2021/02/26 20:25:09 by ctobias          ###   ########.fr        #
+#    Updated: 2021/03/06 16:45:53 by olydden          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ NAME = libft.a
 
 CC = gcc
 
-FLAGS = -O3 -g
-#delete -w
+FLAGS = -O3 -g -Wall -Wextra -Werror
 
 DIR_S = srcs
 

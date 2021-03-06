@@ -6,7 +6,7 @@
 /*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 15:10:42 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:29:14 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:56:23 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@ int		pwd(char **args)
 	return (0);
 }
 
+int		print_error(void)
+{
+	ft_putstr("exit\n");
+	ft_putstr_fd("minishell: exit: too many arguments\n", 2);
+	return (127);
+}
+
+void	print_str_errors(char *c)
+{
+	ft_putstr("exit\n");
+	ft_putstr_fd("minishell: exit: ", 2);
+	ft_putstr_fd(c, 2);
+	ft_putstr_fd(": numeric argument required\n", 2);
+}
+
 int		my_exit(char **args)
 {
 	int		i;
@@ -35,17 +50,10 @@ int		my_exit(char **args)
 		while (args[i])
 		{
 			if (i > 0)
-			{
-				ft_putstr("exit\n");
-				ft_putstr_fd("minishell: exit: too many arguments\n", 2);
-				return (127);
-			}
+				return (print_error());
 			if (!is_numeric(args[i]))
 			{
-				ft_putstr("exit\n");
-				ft_putstr_fd("minishell: exit: ", 2);
-				ft_putstr_fd(args[i], 2);
-				ft_putstr_fd(": numeric argument required\n", 2);
+				print_str_errors(args[i]);
 				exit(255);
 			}
 			++i;
