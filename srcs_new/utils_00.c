@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_00.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 15:11:52 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 15:12:03 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:30:41 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 t_list		*skip_jmps(t_list *commands, char *jmps)
 {

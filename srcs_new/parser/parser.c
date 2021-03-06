@@ -6,32 +6,11 @@
 /*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 16:26:29 by olydden           #+#    #+#             */
-/*   Updated: 2021/03/05 17:37:36 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:28:39 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
-
-// void			print(void *s)
-// {
-// 	printf("%s\n", s);
-// }
-
-// void			print_lst(t_list *lst)
-// {
-// 	ft_lstiter(lst, print);
-// }
-
-// void		print_command(t_command *command)
-// {
-// 	printf("jmp = %d\n", command->jmp_type);
-// 	print_lst(command->args);
-// }
-
-// void		print_commands(t_list *commands)
-// {
-// 	ft_lstiter(commands, print_command);
-// }
+#include "minishell.h"
 
 void		add_args_or_command(t_parser *p)
 {

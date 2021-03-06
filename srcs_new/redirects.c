@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redirects.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:55:19 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/05 19:55:28 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:30:31 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 t_list		*find_left_redir(t_list *commands)
 {

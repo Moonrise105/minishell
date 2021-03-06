@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dict_01.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:38:04 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/05 19:38:17 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:27:36 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 t_pair		*pair_get(char *s, char key)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   jmp_handlers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:02:51 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 15:51:37 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:30:01 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 int			semicolon_handler(t_command *command)
 {

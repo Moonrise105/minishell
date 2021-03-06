@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   dict.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/05 19:55:37 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:30:35 by olydden          ###   ########.fr       */
+/*   Created: 2021/03/06 16:15:56 by olydden           #+#    #+#             */
+/*   Updated: 2021/03/06 16:20:42 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef DICT_H
+# define DICT_H
 
-void	sig_int(int signal)
-{
-	ft_putstr("\n");
-}
+void	dict_set(t_list *dict, char *key, char *value);
+t_list	*dict_del(t_list *dict, char *key);
+t_list	*dict_create(char **array, char key);
+char	**dict_to_arr(t_list *dict);
+t_pair	*dict_get(t_list *dict, char *key);
+void	dict_free(t_list **dict);
+void	free_array_char(char **array);
+void	dict_print(t_list *dict, char delim);
+void	pair_free(void *pair);
 
-void	signal_quit(int signal)
-{
-	ft_putstr("\b\b  \b\b");
-}
-
-void	signal_interrupt(int signal)
-{
-	ft_putstr("\b\b  \b\b");
-	ft_putstr("\n");
-	g_status = 1;
-	shell_newline();
-}
-
-void	eof_ign(void)
-{
-	ft_putstr("  \b\b");
-}
+#endif

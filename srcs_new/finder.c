@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   finder.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:07:42 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 14:52:29 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:29:53 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 int		find_file(DIR *dir, char *file)
 {

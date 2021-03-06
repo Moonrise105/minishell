@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 15:52:37 by olydden           #+#    #+#             */
-/*   Updated: 2021/03/05 18:53:37 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:28:21 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 void			print_errors(t_command *command, int prev)
 {
