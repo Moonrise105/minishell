@@ -6,12 +6,20 @@
 /*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 17:46:07 by olydden           #+#    #+#             */
-/*   Updated: 2021/03/06 15:05:43 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 15:25:15 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
+
+// # include "minishell_new.h"
+
+typedef struct			s_pair
+{
+	char				*key;
+	char				*value;
+}						t_pair;
 
 typedef struct	s_command
 {
@@ -59,5 +67,6 @@ void			sign_question(char **number, char *val, t_list **lst);
 void			sym_add(t_list **lst, char *sym);
 void			str_add(t_list **lst, char *s);
 void			add_str_or_sym(t_list **lst, t_pair **pair);
+void			parse_args(t_list *args);
 
 #endif

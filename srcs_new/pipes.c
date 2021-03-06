@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipes.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/05 19:49:38 by ctobias           #+#    #+#             */
+/*   Updated: 2021/03/05 19:54:43 by ctobias          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell_new.h"
 
 int		pipe_count(t_list *commands)
@@ -24,26 +36,19 @@ void	pipe_first(t_list *commands, int *pipe_fd)
 	close(pipe_fd[1]);
 	waitpid(-1, &g_status, 0);
 	if (WIFSIGNALED(g_status))
-			g_status = WTERMSIG(g_status) + 128;
+		g_status = WTERMSIG(g_status) + 128;
 	else
 		g_status = WEXITSTATUS(g_status);
 	if (ft_strchr("23", command->jmp_type + '0'))
 	{
 		dup2(pipe_fd[0], 0);
 		right_redir_handler(commands, pipe_fd, 1);
-		//exit(0);
 	}
-	else if (command->jmp_type == 4)
-	{
-		//left_redir_start(commands, p);
-		//exit(0);
-	}
-	else
+	else if (command->jmp_type != 4)
 	{
 		dup2(pipe_fd[0], 0);
 		execute_in(command);
 	}
-	
 }
 
 void	pipe_in(t_command *command, int *pipe_fd, int *pipe_fd_new)
@@ -65,7 +70,6 @@ void	pipe_last(t_list *commands, int *pipe_fd)
 	t_command *command;
 
 	command = commands->content;
-	//printf("%s\n", command->args->content);
 	close(pipe_fd[0]);
 	dup2(pipe_fd[1], 1);
 	exit(execute_in(command));
@@ -81,28 +85,21 @@ int		my_pipe(t_list *commands, int count, int i, int *pipe_fd)
 		pipe(pipe_fd_new);
 		pid = fork();
 		if (pid > 0)
-		{
 			pipe_first(ft_lstindex(commands, count), pipe_fd_new);
-		}
 		else
 			my_pipe(commands, count, ++i, pipe_fd_new);
 	}
 	else if (i == count)
-	{
 		pipe_last(commands, pipe_fd);
-	}
 	else
 	{
 		pipe(pipe_fd_new);
 		pid = fork();
 		if (pid > 0)
-		{
 			pipe_in(ft_lstindex(commands, count - i)->content,
 					pipe_fd, pipe_fd_new);
-		}
 		else
 			my_pipe(commands, count, ++i, pipe_fd_new);
 	}
 	return (0);
 }
-

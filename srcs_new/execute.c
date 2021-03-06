@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moonrise <moonrise@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/05 20:08:30 by ctobias           #+#    #+#             */
+/*   Updated: 2021/03/06 01:37:30 by moonrise         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell_new.h"
 
-int		is_builtin(char *cmd)
+int			is_builtin(char *cmd)
 {
 	int code;
-	
+
 	code = 0;
 	if (!ft_strcmp(cmd, "echo") || !ft_strcmp(cmd, "pwd") ||
 		!ft_strcmp(cmd, "cd") || !ft_strcmp(cmd, "env") ||
@@ -13,12 +25,12 @@ int		is_builtin(char *cmd)
 	return (code);
 }
 
-int		get_cmd_exec_type(char *cmd)
+int			get_cmd_exec_type(char *cmd)
 {
-	int type;
-	t_list *env;
-	char **path;
-	t_pair *path_pair;
+	int		type;
+	t_list	*env;
+	char	**path;
+	t_pair	*path_pair;
 
 	env = env_get(NULL);
 	path_pair = dict_get(env, "PATH");
@@ -26,16 +38,13 @@ int		get_cmd_exec_type(char *cmd)
 		path = ft_split(path_pair->value, ':');
 	else
 		path = NULL;
-	//printf("%s\n", path[0]);
 	if (!ft_strcmp(cmd, ".") || !ft_strcmp(cmd, ".."))
 		type = ERROR_TYPE;
 	else if (is_builtin(cmd))
 		type = BULTIN_TYPE;
-	else if (!ft_strncmp(cmd, "./", 2) ||
-			!ft_strncmp(cmd, "../", 3) ||
+	else if (!ft_strncmp(cmd, "./", 2) || !ft_strncmp(cmd, "../", 3) ||
 			!ft_strncmp(cmd, "/", 1))
 		type = PATH_TYPE;
-	
 	else if (parse_dirs(path, cmd))
 		type = BIN_TYPE;
 	else
@@ -45,37 +54,37 @@ int		get_cmd_exec_type(char *cmd)
 	return (type);
 }
 
-char	**args_create(t_list *args)
+char		**args_create(t_list *args)
 {
-	int size;
-	char **argv;
-	int i;
+	int		size;
+	char	**argv;
+	int		i;
 
-    argv = NULL;
-    if (args)
-    {
-        size = ft_lstsize(args);
-        argv = (char**)malloc(sizeof(char*) * (size + 1));
-        i = 0;
-        while (args)
-        {
-            argv[i] = ft_strdup(args->content);
-            args = args->next;
-            ++i;
-        }
-        argv[i] = NULL;
-    }
+	argv = NULL;
+	if (args)
+	{
+		size = ft_lstsize(args);
+		argv = (char**)malloc(sizeof(char*) * (size + 1));
+		i = 0;
+		while (args)
+		{
+			argv[i] = ft_strdup(args->content);
+			args = args->next;
+			++i;
+		}
+		argv[i] = NULL;
+	}
 	return (argv);
 }
 
-int     builtin_exec(t_command *command)
+int			builtin_exec(t_command *command)
 {
-    char **args;
-    int code;
+	char	**args;
+	int		code;
 
-    args = args_create(command->args);
-    if (!ft_strcmp("echo", command->args->content))
-        code = echo(args + 1);
+	args = args_create(command->args);
+	if (!ft_strcmp("echo", command->args->content))
+		code = echo(args + 1);
 	else if (!ft_strcmp("pwd", command->args->content))
 		code = pwd(args + 1);
 	else if (!ft_strcmp("cd", command->args->content))
@@ -88,14 +97,14 @@ int     builtin_exec(t_command *command)
 		code = unset(args + 1);
 	else if (!ft_strcmp("exit", command->args->content))
 		code = my_exit(args + 1);
-    free_array_char(args);
-    return (code);
+	free_array_char(args);
+	return (code);
 }
 
-
-int		execute_path(char *path, char **args, char **env, char *cmd_name)
+int			execute_path(char *path, char **args, char **env, char *cmd_name)
 {
-	int code;
+	int		code;
+
 	errno = 0;
 	code = 0;
 	if (execve(path, args, env) < 0)
@@ -107,22 +116,22 @@ int		execute_path(char *path, char **args, char **env, char *cmd_name)
 	return (code);
 }
 
-int		path_exec(t_command *command)
+int			path_exec(t_command *command)
 {
-	char **args;
-	int code;
-	char **env;
+	char	**args;
+	int		code;
+	char	**env;
 
 	env = dict_to_arr(env_get(NULL));
 	args = args_create(command->args);
-	code = execute_path(command->args->content, 
+	code = execute_path(command->args->content,
 						args, env, command->args->content);
 	free_array_char(args);
 	free_array_char(env);
 	return (code);
 }
 
-char	*split_path(char *s1, char *s2)
+char		*split_path(char *s1, char *s2)
 {
 	char *tmp;
 	char *res;
@@ -130,12 +139,11 @@ char	*split_path(char *s1, char *s2)
 	tmp = ft_strjoin(s1, "/");
 	res = ft_strjoin(tmp, s2);
 	free(tmp);
-	return (res); 	
+	return (res);
 }
 
-int		bin_exec(t_command *command)
+int			bin_exec(t_command *command)
 {
-	char	**args;
 	t_list	*env;
 	int		code;
 	char	**path;
@@ -143,22 +151,21 @@ int		bin_exec(t_command *command)
 	char	*file_path;
 
 	env = env_get(NULL);
-	args = args_create(command->args);
 	path = ft_split(dict_get(env, "PATH")->value, ':');
 	cmd_path = parse_dirs(path, command->args->content);
 	file_path = split_path(cmd_path, command->args->content);
-	execute_path(file_path, args, dict_to_arr(env), command->args->content);
+	execute_path(file_path, args_create(command->args),
+				dict_to_arr(env), command->args->content);
 	return (0);
 }
 
-int		execute_in(t_command *command)
+int			execute_in(t_command *command)
 {
 	int type;
 	int code;
 
 	type = get_cmd_exec_type(command->args->content);
 	parse_args(command->args);
-	//printf("%d\n", type);
 	if (type == BIN_TYPE)
 	{
 		code = bin_exec(command);
@@ -177,24 +184,27 @@ int		execute_in(t_command *command)
 	return (code);
 }
 
-int		fork_exec(t_command *command, int *dup_fd)
+void		fork_exec_parent(int *dup_fd)
+{
+	signal(SIGINT, sig_int);
+	waitpid(-1, &g_status, 0);
+	if (WIFSIGNALED(g_status))
+		g_status = WTERMSIG(g_status) + 128;
+	else
+		g_status = WEXITSTATUS(g_status);
+	if (dup_fd && dup_fd[0])
+		close(dup_fd[0]);
+	if (dup_fd && dup_fd[1])
+		close(dup_fd[1]);
+}
+
+int			fork_exec(t_command *command, int *dup_fd)
 {
 	int pid;
 
 	pid = fork();
 	if (pid > 0)
-	{
-		signal(SIGINT, sig_int);
-		waitpid(-1, &g_status, 0);
-		if (WIFSIGNALED(g_status))
-			g_status = WTERMSIG(g_status) + 128;
-		else
-			g_status = WEXITSTATUS(g_status);
-		if (dup_fd && dup_fd[0])
-			close(dup_fd[0]);
-		if (dup_fd && dup_fd[1])
-			close(dup_fd[1]);
-	}
+		fork_exec_parent(dup_fd);
 	else if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
@@ -209,22 +219,15 @@ int		fork_exec(t_command *command, int *dup_fd)
 	return (0);
 }
 
-
-
-
-int     execute_handler(t_command *command)
+int			execute_handler(t_command *command)
 {
-    int code;
-	int type;
+	int		code;
+	int		type;
 
 	type = get_cmd_exec_type(command->args->content);
 	if (type == BIN_TYPE || type == PATH_TYPE)
-	{
 		fork_exec(command, NULL);
-	}
-		
-	else //type == BUILTIN_TYPE
+	else
 		execute_in(command);
-	
-    return (0);
+	return (0);
 }

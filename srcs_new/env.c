@@ -1,23 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/05 20:19:54 by ctobias           #+#    #+#             */
+/*   Updated: 2021/03/05 20:28:02 by ctobias          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell_new.h"
 
-
-
-t_list		*env_get(t_list **nw) 
+t_list		*env_get(t_list **nw)
 {
-	static t_list *env;
+	static t_list	*env;
 
 	if (nw)
-	{
 		env = *nw;
-	}
-		
 	return (env);
 }
 
-int		env_f(char **av, int dec)
+int			env_f(char **av, int dec)
 {
-	int i;
-	char **env;
+	int		i;
+	char	**env;
 
 	if (av)
 	{
@@ -35,20 +42,32 @@ int		env_f(char **av, int dec)
 		return (0);
 	}
 	return (-1);
-	
 }
 
-int		export(char **av)
+void		export_element(t_list *dict, char *arg)
 {
-	t_list *dict;
-	int i;
 	char **pair;
-	char **env;
-
-	t_pair *tmp;
-	char **nw;
 	char *tmp_s;
-	char *tmp_s1;
+
+	pair = split_f(arg, '=');
+	tmp_s = ft_strtrim(pair[1], " ");
+	free(pair[1]);
+	pair[1] = tmp_s;
+	if (pair[1])
+	{
+		dict_set(dict, pair[0], pair[1]);
+		free(pair[0]);
+		free(pair[1]);
+	}
+	else
+		free(pair[0]);
+	free(pair);
+}
+
+int			export(char **av)
+{
+	t_list	*dict;
+	int		i;
 
 	if (!av[0])
 	{
@@ -57,38 +76,19 @@ int		export(char **av)
 	}
 	dict = env_get(NULL);
 	i = 0;
-	//dict = dict_create(env, '=');
 	while (av[i])
 	{
-		//printf("|%s|\n", av[i]);
-		pair = split_f(av[i], '=');
-		tmp_s = ft_strtrim(pair[1], " ");
-		free(pair[1]);
-		pair[1] = tmp_s;
-		if (pair[1])
-		{
-			dict_set(dict, pair[0], pair[1]);
-			free(pair[0]);
-			free(pair[1]);
-		}
-			
-			
-		else
-		{
-			free(pair[0]);	
-		}
-		free(pair);
+		export_element(dict, av[i]);
 		++i;
-		
 	}
 	return (0);
 }
 
-int		unset(char **av)
+int			unset(char **av)
 {
-	t_list *dict;
-	int i;
-	char **env;
+	t_list	*dict;
+	int		i;
+	char	**env;
 
 	i = 0;
 	dict = env_get(NULL);

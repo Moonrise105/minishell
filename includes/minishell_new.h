@@ -9,16 +9,7 @@
 # include "parser.h"
 # include "errno.h"
 # include <sys/stat.h>
-# include <termcap.h>
-# include <termios.h>
 extern int g_status;
-typedef struct			s_pair
-{
-	char				*key;
-	char				*value;
-}						t_pair;
-
-
 
 //dict
 void	dict_set(t_list *dict, char *key, char *value);
@@ -29,6 +20,7 @@ t_pair	*dict_get(t_list *dict, char *key);
 void	dict_free(t_list **dict);
 void	free_array_char(char **array);
 void	dict_print(t_list *dict, char delim);
+void	pair_free(t_pair *pair);
 
 //shell
 #define READ_EXIT 1
@@ -68,6 +60,7 @@ int		pwd(char **args);
 int		cd(char **args);
 //messages
 void	prefix_command(char *command);
+void	print_newline(char *s, int fd);
 
 //finder
 int		find_file(DIR *dir, char *file);
@@ -85,9 +78,6 @@ int		my_pipe(t_list *commands, int count, int i, int *pipe_fd);
 
 //redirects
 t_list	*find_left_redir(t_list *commands);
-
-//arg_parser
-void	parse_args(t_list *args);
 
 //utils
 t_list *skip_jmps(t_list *commands, char *jmps);
