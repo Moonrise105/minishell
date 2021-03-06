@@ -10,13 +10,6 @@
 # include "errno.h"
 # include <sys/stat.h>
 extern int g_status;
-typedef struct			s_pair
-{
-	char				*key;
-	char				*value;
-}						t_pair;
-
-
 
 //dict
 void	dict_set(t_list *dict, char *key, char *value);
@@ -86,9 +79,6 @@ int		my_pipe(t_list *commands, int count, int i, int *pipe_fd);
 
 //redirects
 t_list	*find_left_redir(t_list *commands);
-
-//arg_parser
-void	parse_args(t_list *args);
 
 //utils
 t_list *skip_jmps(t_list *commands, char *jmps);
