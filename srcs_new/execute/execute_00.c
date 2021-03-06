@@ -6,7 +6,7 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:08:30 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 17:11:01 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:12:44 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int			builtin_exec(t_command *command)
 {
 	char	**args;
 	int		code;
-	
+
 	code = 0;
 	args = args_create(command->args);
 	if (!ft_strcmp("echo", command->args->content))
