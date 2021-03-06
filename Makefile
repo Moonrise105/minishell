@@ -21,6 +21,8 @@ SOURCES =	dict.c \
 			parser/free_parser.c \
 			parser/utils/utils_00_parser.c \
 			parser/utils/utils_01_parser.c \
+			parser/arg_parser/arg_parser.c\
+			parser/arg_parser/utils_00_arg_parser.c \
 			manager.c \
 			execute.c \
 			jmp_handlers.c \
@@ -33,7 +35,6 @@ SOURCES =	dict.c \
 			utils_00.c \
 			redirects.c \
 			dirs.c \
-			arg_parser.c
 
 SRCS = $(addprefix $(DIR_S)/, $(SOURCES))
 
@@ -46,7 +47,7 @@ $(NAME): $(OBJS)
 	@$(CC) -o $@ $^ $(DIR_LIBFT)/libft.a -ltermcap
 
 $(DIR_O)/%.o: $(DIR_S)/%.c $(HEADER)/minishell_new.h
-	@mkdir -p $(DIR_O) $(DIR_O)/parser $(DIR_O)/parser/utils
+	@mkdir -p $(DIR_O) $(DIR_O)/parser $(DIR_O)/parser/utils $(DIR_O)/parser/arg_parser
 	@$(CC) $(FLAGS_C) -I $(HEADER) -c $< -o $@
 
 clean:

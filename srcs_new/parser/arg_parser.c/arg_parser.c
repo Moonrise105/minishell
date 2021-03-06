@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 18:16:28 by olydden           #+#    #+#             */
-/*   Updated: 2021/03/05 18:50:51 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 15:04:30 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,44 +36,6 @@ char	*lst_to_str(t_list *lst)
 	return (start);
 }
 
-void	sym_add(t_list **lst, char *sym)
-{
-	char *tmp;
-
-	tmp = ft_strdup(sym);
-	if (*lst)
-		ft_lstadd_back(lst, ft_lstnew(tmp));
-	else
-		*lst = ft_lstnew(tmp);
-}
-
-void	str_add(t_list **lst, char *s)
-{
-	while (*s)
-	{
-		sym_add(lst, s);
-		s++;
-	}
-}
-
-void	sign_question(char **number, char *val, t_list **lst)
-{
-	if (!ft_strcmp(val, "?"))
-	{
-		*number = ft_itoa(g_status);
-		str_add(lst, *number);
-		free(*number);
-	}
-}
-
-void	add_str_or_sym(t_list **lst, t_pair **pair)
-{
-	if (*pair)
-		str_add(lst, (*pair)->value);
-	else
-		sym_add(lst, "");
-}
-
 void	str_sub(t_list **lst, char *s, int *i)
 {
 	int		start;
@@ -101,52 +63,48 @@ void	str_sub(t_list **lst, char *s, int *i)
 	}
 }
 
-void	set_quoter_flags(int *q)
+void	parse(t_arg_parser *ap, char *s)
 {
-	if (*q)
-		*q = 0;
+	if (s[ap->i] == '\'' && !ap->q2 && !ap->ec)
+		set_quoter_flags(&ap->q1);
+	else if (s[ap->i] == '\"' && !ap->q1 && !ap->ec)
+		set_quoter_flags(&ap->q2);
+	else if (s[ap->i] == '\\' && !ap->ec)
+		ap->ec = 1;
+	else if (s[ap->i] == '$' && !ap->q1 && !ap->ec)
+		str_sub(&ap->new_str, s, &ap->i);
 	else
-		*q = 1;
+	{
+		sym_add(&ap->new_str, &s[ap->i]);
+		if (ap->ec)
+			ap->ec = 0;
+	}
 }
 
 char	*parse_arg(char *s)
 {
-	int		i;
-	t_list	*new_str;
-	int		q1;
-	int		q2;
-	int		ec;
-	char	*str;
+	t_arg_parser	ap;
+	char			*str;
 
-	new_str = NULL;
-	i = 0;
-	q1 = 0;
-	q2 = 0;
-	ec = 0;
+	ap.new_str = NULL;
+	ap.i = 0;
+	ap.q1 = 0;
+	ap.q2 = 0;
+	ap.ec = 0;
 	if (!(*s))
 		return (NULL);
 	if (!ft_strcmp(s, "~"))
-		str_sub(&new_str, "$HOME", &i);
-	while (s[i])
 	{
-		if (s[i] == '\'' && !q2 && !ec)
-			set_quoter_flags(&q1);
-		else if (s[i] == '\"' && !q1 && !ec)
-			set_quoter_flags(&q2);
-		else if (s[i] == '\\' && !ec)
-			ec = 1;
-		else if (s[i] == '$' && !q1 && !ec)
-			str_sub(&new_str, s, &i);
-		else
-		{
-			sym_add(&new_str, &s[i]);
-			if (ec)
-				ec = 0;
-		}
-		++i;
+		str_sub(&ap.new_str, "$HOME", &ap.i);
+		ap.i = 1;
 	}
-	str = lst_to_str(new_str);
-	lst_free(&new_str);
+	while (s[ap.i])
+	{
+		parse(&ap, s);
+		++(ap.i);
+	}
+	str = lst_to_str(ap.new_str);
+	lst_free(&ap.new_str);
 	return (str);
 }
 
