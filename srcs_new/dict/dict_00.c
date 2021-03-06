@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict_00.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:37:28 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:27:36 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:59:39 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char		**split_f(char *s, char c)
 			++i;
 		}
 		p[0][i] = '\0';
-		if (i == ft_strlen(s))
+		if (i == (int)ft_strlen(s))
 			p[1] = ft_strdup("");
 		else
 			p[1] = ft_strdup(&s[++i]);

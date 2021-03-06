@@ -6,7 +6,7 @@
 /*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 17:03:03 by olydden           #+#    #+#             */
-/*   Updated: 2021/03/06 17:05:22 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:09:26 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <dirent.h>
 # include "../libft/includes/libft.h"
 # include "parser.h"
+# include "dict.h"
 # include "errno.h"
 # include <sys/stat.h>
 
