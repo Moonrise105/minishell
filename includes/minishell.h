@@ -20,7 +20,7 @@ t_pair	*dict_get(t_list *dict, char *key);
 void	dict_free(t_list **dict);
 void	free_array_char(char **array);
 void	dict_print(t_list *dict, char delim);
-void	pair_free(t_pair *pair);
+void		pair_free(void *pair);
 
 //shell
 #define READ_EXIT 1
