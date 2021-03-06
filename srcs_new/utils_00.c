@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_00.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 15:11:52 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:30:41 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:52:11 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,38 @@ int			is_numeric(char *s)
 		++i;
 	}
 	return (1);
+}
+
+char		**args_create(t_list *args)
+{
+	int		size;
+	char	**argv;
+	int		i;
+
+	argv = NULL;
+	if (args)
+	{
+		size = ft_lstsize(args);
+		argv = (char**)malloc(sizeof(char*) * (size + 1));
+		i = 0;
+		while (args)
+		{
+			argv[i] = ft_strdup(args->content);
+			args = args->next;
+			++i;
+		}
+		argv[i] = NULL;
+	}
+	return (argv);
+}
+
+char		*split_path(char *s1, char *s2)
+{
+	char *tmp;
+	char *res;
+
+	tmp = ft_strjoin(s1, "/");
+	res = ft_strjoin(tmp, s2);
+	free(tmp);
+	return (res);
 }
