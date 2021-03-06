@@ -6,7 +6,7 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:02:51 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/05 20:07:21 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 15:51:37 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,34 +99,41 @@ t_list		*right_redir_handler(t_list *commands, int *pipe_fd, int prev_jmp)
 	}
 }
 
-t_list		*left_redir_handler(t_list *commands)
+t_list		*left_redir(t_list *commands, int *err, t_list **first_commands)
 {
-	t_command	*command;
-	t_command	*first_cmd;
-	t_list		*first_commands;
-	struct stat	buf;
-	int err;
-	int fd;
-	int dup_fd[2];
+	struct stat		buf;
+	t_command		*command;
 
-	err = 0;
-	first_commands = commands;
+	*err = 0;
+	*first_commands = commands;
 	command = commands->content;
-	first_cmd = command;
 	while (commands && command->jmp_type == 4)
 	{
 		commands = commands->next;
 		if (commands)
 		{
 			command = commands->content;
-			if (lstat(command->args->content, &buf) < 0 && !err)
+			if (lstat(command->args->content, &buf) < 0 && !(*err))
 			{
-				err = 1;
+				*err = 1;
 				prefix_command(command->args->content);
 				perror(" ");
 			}
 		}
 	}
+	return (commands);
+}
+
+t_list		*left_redir_handler(t_list *commands)
+{
+	t_command	*command;
+	t_list		*first_commands;
+	int			err;
+	int			fd;
+	int			dup_fd[2];
+
+	commands = left_redir(commands, &err, &first_commands);
+	command = commands->content;
 	if (err)
 		return (commands);
 	dup_fd[0] = open(command->args->content, O_RDONLY);
@@ -134,7 +141,7 @@ t_list		*left_redir_handler(t_list *commands)
 	if (ft_strchr("23", command->jmp_type + '0'))
 		commands = right_redir_handler(first_commands, dup_fd, 4);
 	else
-		fork_exec(first_cmd, dup_fd);
+		fork_exec(first_commands->content, dup_fd);
 	close(dup_fd[0]);
 	return (commands);
 }

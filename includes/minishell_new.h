@@ -61,6 +61,7 @@ int		cd(char **args);
 //messages
 void	prefix_command(char *command);
 void	print_newline(char *s, int fd);
+void	chdir_error(char *path);
 
 //finder
 int		find_file(DIR *dir, char *file);
@@ -84,4 +85,5 @@ t_list *skip_jmps(t_list *commands, char *jmps);
 void	lst_free(t_list **lst);
 char	**split_f(char *s, char c);
 int		my_exit(char **args);
+int			is_numeric(char *s);
 #endif
