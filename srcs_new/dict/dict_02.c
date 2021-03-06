@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict_02.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: moonrise <moonrise@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:06:23 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/05 19:38:31 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 03:14:27 by moonrise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 void		dict_set(t_list *dict, char *key, char *value)
 {
 	t_pair	*pair;
+	char	*tmp;
 
 	if ((pair = dict_get(dict, key)))
 	{
 		free(pair->value);
 		pair->value = ft_strdup(value);
+		
 	}
 	else
 	{

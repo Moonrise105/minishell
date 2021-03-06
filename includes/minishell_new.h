@@ -9,8 +9,6 @@
 # include "parser.h"
 # include "errno.h"
 # include <sys/stat.h>
-# include <termcap.h>
-# include <termios.h>
 extern int g_status;
 typedef struct			s_pair
 {
@@ -29,6 +27,7 @@ t_pair	*dict_get(t_list *dict, char *key);
 void	dict_free(t_list **dict);
 void	free_array_char(char **array);
 void	dict_print(t_list *dict, char delim);
+void	pair_free(t_pair *pair);
 
 //shell
 #define READ_EXIT 1
@@ -68,6 +67,7 @@ int		pwd(char **args);
 int		cd(char **args);
 //messages
 void	prefix_command(char *command);
+void	print_newline(char *s, int fd);
 
 //finder
 int		find_file(DIR *dir, char *file);
