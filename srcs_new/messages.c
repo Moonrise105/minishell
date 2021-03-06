@@ -6,11 +6,11 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:56:02 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:49:10 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:52:14 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 void		prefix_command(char *command)
 {

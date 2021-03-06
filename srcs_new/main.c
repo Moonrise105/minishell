@@ -6,11 +6,11 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:59:55 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:49:06 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:52:20 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 int g_status = 0;
 

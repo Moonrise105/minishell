@@ -6,11 +6,11 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 15:11:52 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:49:21 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:52:11 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 t_list		*skip_jmps(t_list *commands, char *jmps)
 {

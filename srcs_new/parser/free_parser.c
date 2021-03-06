@@ -6,11 +6,11 @@
 /*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 15:54:56 by olydden           #+#    #+#             */
-/*   Updated: 2021/03/05 15:55:31 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:28:26 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 void			lst_free(t_list **lst)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:19:54 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 15:11:32 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:29:40 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 t_list		*env_get(t_list **nw)
 {

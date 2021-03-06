@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   dict_00.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:37:28 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/05 19:49:12 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:27:36 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
-void		pair_free(t_pair *pair)
+void		pair_free(void *pair)
 {
 	if (pair)
 	{
-		free(pair->key);
-		free(pair->value);
-		free(pair);
+		free(((t_pair *)(pair))->key);
+		free(((t_pair *)(pair))->value);
+		free((t_pair *)pair);
 	}
 }
 

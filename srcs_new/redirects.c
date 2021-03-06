@@ -6,11 +6,11 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:55:19 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:49:18 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:52:03 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 t_list			*find_left_redir(t_list *commands)
 {

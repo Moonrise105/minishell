@@ -6,11 +6,11 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:02:51 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:50:00 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:52:26 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 int			semicolon_handler(t_command *command)
 {

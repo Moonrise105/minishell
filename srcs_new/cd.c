@@ -6,11 +6,11 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 02:22:13 by moonrise          #+#    #+#             */
-/*   Updated: 2021/03/06 16:48:55 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:53:06 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 void		cd_pwd_set(t_list *dict, char *dir, char *path, char **args)
 {

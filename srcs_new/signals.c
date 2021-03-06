@@ -6,11 +6,11 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:55:37 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:49:19 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:52:08 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 void	sig_int(int signal)
 {

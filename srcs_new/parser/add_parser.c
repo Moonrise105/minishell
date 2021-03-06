@@ -6,11 +6,11 @@
 /*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 16:03:51 by olydden           #+#    #+#             */
-/*   Updated: 2021/03/05 16:20:27 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:28:12 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 void		args_add(t_list **args, char *arg)
 {

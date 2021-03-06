@@ -6,11 +6,11 @@
 /*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 15:02:27 by olydden           #+#    #+#             */
-/*   Updated: 2021/03/06 15:14:24 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:27:54 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 void	set_quoter_flags(int *q)
 {

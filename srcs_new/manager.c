@@ -6,11 +6,11 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:56:25 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:49:08 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:53:14 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 int		manager(t_list *commands)
 {

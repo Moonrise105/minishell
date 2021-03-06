@@ -6,11 +6,11 @@
 /*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:06:23 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 15:17:08 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:27:42 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_new.h"
+#include "minishell.h"
 
 void		dict_set(t_list *dict, char *key, char *value)
 {
