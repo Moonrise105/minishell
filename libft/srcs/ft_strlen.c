@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olydden <olydden@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 12:29:19 by olydden           #+#    #+#             */
-/*   Updated: 2020/08/08 16:35:56 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:20:30 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ size_t	ft_strlen(const char *s)
 			s++;
 		}
 	}
-	
 	return (i);
 }

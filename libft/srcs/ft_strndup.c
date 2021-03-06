@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 18:20:51 by olydden           #+#    #+#             */
-/*   Updated: 2021/02/22 17:13:04 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:20:14 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ char	*ft_strndup(const char *s, int n)
 	if (n < 0)
 		return ((char *)s);
 	if (!(dup = (char *)malloc(sizeof(char) * (n + 1))))
-	{
-		//ft_free(dup);
 		return (NULL);
-	}
 	dup_start = dup;
 	while (n && *s)
 	{

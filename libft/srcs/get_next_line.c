@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olydden <olydden@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/26 17:52:22 by olydden           #+#    #+#             */
-/*   Updated: 2021/01/29 00:36:05 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:18:03 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int					get_next_line(int fd, char **line)
 	int				read_bytes;
 	char			*temp;
 
-	ft_free(*line);
 	*line = NULL;
 	n = check_storage(storage, line);
 	while (!n && (read_bytes = read(fd, line_util, BUFFER_SIZE)))

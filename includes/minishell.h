@@ -6,13 +6,13 @@
 /*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 17:03:03 by olydden           #+#    #+#             */
-/*   Updated: 2021/03/06 17:09:26 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:16:03 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# include <stdio.h> // delete
+# include <stdio.h>
 # include <signal.h>
 # include <sys/types.h>
 # include <sys/wait.h>
@@ -25,16 +25,12 @@
 
 extern int g_status;
 
-//shell
 # define READ_EXIT 1
 # define READ_END 0
 
 void	shell_newline();
-
-//manager
 int		manager(t_list *commands);
 
-//execute
 # define FORK_ERROR -4
 # define BULTIN_TYPE 3
 # define BIN_TYPE 4
@@ -53,44 +49,36 @@ int		path_exec(t_command *command);
 int		bin_exec(t_command *command);
 void	fork_exec_parent(int *dup_fd);
 
-//signals
 void	signal_interrupt(int signal);
 void	signal_quit(int signal);
 void	signal_interrupt(int signal);
 void	eof_ign(void);
 void	sig_int(int signal);
 
-//jmp_handlers
 int		semicolon_handler(t_command *command);
 t_list	*pipe_handler(t_list *commands);
 t_list	*right_redir_handler(t_list *commands, int *pipe_fd, int prev_jmp);
 t_list	*left_redir_handler(t_list *commands);
 
-//builtins
 int		echo(char **av);
 int		pwd(void);
 int		cd(char **args);
 
-//messages
 void	prefix_command(char *command);
 void	print_newline(char *s, int fd);
 void	chdir_error(char *path);
 
-//finder
 int		find_file(DIR *dir, char *file);
 char	*parse_dirs(char **dirs, char *file);
 
-//env
 t_list	*env_get(t_list **nw);
 int		env_f(char **av, int dec);
 int		export(char **av);
 int		unset(char **av);
 
-//pipe
 int		pipe_count(t_list *commands);
 int		my_pipe(t_list *commands, int count, int i, int *pipe_fd);
 
-//redirects
 t_list	*find_left_redir(t_list *commands);
 void	right_redir_write_exec(int *pipe_fd, int fd,
 									t_command *first_cmd, int prev_jmp);
@@ -100,8 +88,7 @@ int		right_redir(int *pipe_fd, int prev_jmp,
 						t_command *first_cmd, t_list *prev_commands);
 t_list	*left_redir(t_list *commands, int *err, t_list **first_commands);
 
-//utils
-t_list *skip_jmps(t_list *commands, char *jmps);
+t_list	*skip_jmps(t_list *commands, char *jmps);
 void	lst_free(t_list **lst);
 char	**split_f(char *s, char c);
 int		my_exit(char **args);

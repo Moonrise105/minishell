@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 11:49:25 by olydden           #+#    #+#             */
-/*   Updated: 2021/02/25 17:52:46 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:19:50 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ int		ft_printf(const char *format, ...)
 	va_start(ap, format);
 	printed = 0;
 	i = 0;
-	//dup2(1, 2);
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
