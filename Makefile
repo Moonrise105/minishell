@@ -25,8 +25,9 @@ SOURCES =	dict/dict_00.c \
 			parser/utils/utils_01_parser.c \
 			parser/arg_parser/arg_parser.c\
 			parser/arg_parser/utils_00_arg_parser.c \
+			execute/execute_00.c \
+			execute/execute_01.c \
 			manager.c \
-			execute.c \
 			jmp_handlers.c \
 			echo.c \
 			messages.c \
@@ -50,7 +51,7 @@ $(NAME): $(OBJS)
 	@$(CC) -o $@ $^ $(DIR_LIBFT)/libft.a -ltermcap
 
 $(DIR_O)/%.o: $(DIR_S)/%.c $(HEADER)/minishell_new.h
-	@mkdir -p $(DIR_O) $(DIR_O)/parser $(DIR_O)/parser/utils $(DIR_O)/dict $(DIR_O)/parser/arg_parser
+	@mkdir -p $(DIR_O) $(DIR_O)/parser $(DIR_O)/parser/utils $(DIR_O)/dict $(DIR_O)/parser/arg_parser $(DIR_O)/execute
 	@$(CC) $(FLAGS_C) -I $(HEADER) -c $< -o $@
 
 clean:

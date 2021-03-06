@@ -6,7 +6,7 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:02:51 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 15:51:37 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 16:50:00 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,74 +54,19 @@ t_list		*right_redir_handler(t_list *commands, int *pipe_fd, int prev_jmp)
 	command = commands->content;
 	first_cmd = command;
 	commands = skip_jmps(commands, "4");
-	prev_command = commands->content;
+	prev_commands = commands;
 	commands = commands->next;
 	command = commands->content;
 	while (commands)
 	{
-		if (ft_strchr("23", command->jmp_type + '0'))
-		{
-			fd = open(command->args->content, O_RDWR | O_CREAT | O_TRUNC, 0644);
-			close(fd);
-		}
-		else
-		{
-			if (prev_command->jmp_type == 2)
-				fd = open(command->args->content, O_RDWR | O_CREAT | O_TRUNC, 0644);
-			else
-				fd = open(command->args->content, O_RDWR | O_APPEND | O_CREAT, 0644);
-			if (pipe_fd && prev_jmp == 1)
-			{
-				dup2(fd, 1);
-				execute_in(first_cmd);
-				close(fd);
-			}
-			else if (pipe_fd && prev_jmp == 4)
-			{
-				pipe_fd[1] = fd;
-				fork_exec(first_cmd, pipe_fd);
-			}
-			else
-			{
-				pipe_fd = malloc(sizeof(int) * 2);
-				pipe_fd[1] = fd;
-				pipe_fd[0] = 0;
-				fork_exec(first_cmd, pipe_fd);
-				free(pipe_fd);
-			}
-			close(fd);
+		if (right_redir(pipe_fd, prev_jmp, first_cmd, prev_commands))
 			return (commands);
-		}
 		prev_commands = commands;
 		prev_command = command;
 		commands = commands->next;
 		command = commands->content;
 	}
-}
-
-t_list		*left_redir(t_list *commands, int *err, t_list **first_commands)
-{
-	struct stat		buf;
-	t_command		*command;
-
-	*err = 0;
-	*first_commands = commands;
-	command = commands->content;
-	while (commands && command->jmp_type == 4)
-	{
-		commands = commands->next;
-		if (commands)
-		{
-			command = commands->content;
-			if (lstat(command->args->content, &buf) < 0 && !(*err))
-			{
-				*err = 1;
-				prefix_command(command->args->content);
-				perror(" ");
-			}
-		}
-	}
-	return (commands);
+	return (NULL);
 }
 
 t_list		*left_redir_handler(t_list *commands)

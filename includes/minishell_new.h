@@ -41,6 +41,13 @@ char	**args_create(t_list *args);
 int     execute_handler(t_command *command);
 int		execute_in(t_command *command);
 int		fork_exec(t_command *command, int *dup_fd);
+int			is_builtin(char *cmd);
+int			get_cmd_exec_type(char *cmd);
+int			builtin_exec(t_command *command);
+int			execute_path(char *path, char **args, char **env, char *cmd_name);
+int			path_exec(t_command *command);
+int			bin_exec(t_command *command);
+void		fork_exec_parent(int *dup_fd);
 
 //signals
 void	signal_interrupt(int signal);
@@ -79,6 +86,13 @@ int		my_pipe(t_list *commands, int count, int i, int *pipe_fd);
 
 //redirects
 t_list	*find_left_redir(t_list *commands);
+void			right_redir_write_exec(int *pipe_fd, int fd,
+										t_command *first_cmd, int prev_jmp);
+void			right_redir_write(t_list *prev_commands, t_command *first_cmd,
+							int *pipe_fd, int prev_jmp);
+int			right_redir(int *pipe_fd, int prev_jmp,
+						t_command *first_cmd, t_list *prev_commands);
+t_list		*left_redir(t_list *commands, int *err, t_list **first_commands);
 
 //utils
 t_list *skip_jmps(t_list *commands, char *jmps);
@@ -86,4 +100,5 @@ void	lst_free(t_list **lst);
 char	**split_f(char *s, char c);
 int		my_exit(char **args);
 int			is_numeric(char *s);
+char		*split_path(char *s1, char *s2);
 #endif
