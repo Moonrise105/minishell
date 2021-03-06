@@ -6,7 +6,7 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:55:37 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:52:08 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:08:39 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 void	sig_int(int signal)
 {
+	++signal;
 	ft_putstr("\n");
 }
 
 void	signal_quit(int signal)
 {
+	++signal;
 	ft_putstr("\b\b  \b\b");
 }
 
 void	signal_interrupt(int signal)
 {
+	++signal;
 	ft_putstr("\b\b  \b\b");
 	ft_putstr("\n");
 	g_status = 1;

@@ -6,13 +6,13 @@
 /*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 15:10:42 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 17:06:57 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:12:34 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		pwd(char **args)
+int		pwd(void)
 {
 	char dir[500];
 
@@ -42,7 +42,6 @@ int		my_exit(char **args)
 {
 	int		i;
 	int		code;
-	char	*c;
 
 	i = 0;
 	if (args)

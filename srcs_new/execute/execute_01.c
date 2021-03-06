@@ -6,7 +6,7 @@
 /*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:08:30 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 17:09:40 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:12:34 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int			bin_exec(t_command *command)
 {
 	t_list	*env;
-	int		code;
 	char	**path;
 	char	*cmd_path;
 	char	*file_path;
@@ -91,7 +90,6 @@ int			fork_exec(t_command *command, int *dup_fd)
 
 int			execute_handler(t_command *command)
 {
-	int		code;
 	int		type;
 
 	type = get_cmd_exec_type(command->args->content);

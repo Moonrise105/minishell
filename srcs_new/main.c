@@ -6,7 +6,7 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:59:55 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:52:20 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:05:02 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void		shell(char **env)
 
 int			main(int ac, char **av, char **en)
 {
-	shell(en);
+	if (ac > 0 && av)
+		shell(en);
 	return (0);
 }
