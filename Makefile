@@ -8,7 +8,7 @@ FLAGS_C = -g3 -Wall -Wextra -Werror
 
 DIR_LIBFT = libft
 
-DIR_S = srcs_new
+DIR_S = srcs
 
 DIR_O = objs
 
