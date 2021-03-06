@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict_01.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:38:04 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:27:36 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:02:38 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,13 @@ t_pair		*pair_get(char *s, char key)
 	t_pair	*pair;
 	char	**pair_split;
 
-	if (s)
+	pair = (t_pair*)malloc(sizeof(t_pair));
+	pair_split = split_f(s, key);
+	if (pair_split)
 	{
-		pair = (t_pair*)malloc(sizeof(t_pair));
-		pair_split = split_f(s, key);
-		if (pair_split)
-		{
-			pair->key = pair_split[0];
-			pair->value = pair_split[1];
-			free(pair_split);
-		}
+		pair->key = pair_split[0];
+		pair->value = pair_split[1];
+		free(pair_split);
 	}
 	return (pair);
 }

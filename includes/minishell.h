@@ -63,7 +63,7 @@ t_list    *right_redir_handler(t_list *commands, int *pipe_fd, int prev_jmp);
 t_list    *left_redir_handler(t_list *commands);
 //builtins
 int		echo(char **av);
-int		pwd(char **args);
+int		pwd(void);
 int		cd(char **args);
 //messages
 void	prefix_command(char *command);

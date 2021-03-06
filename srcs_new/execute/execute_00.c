@@ -6,7 +6,7 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:08:30 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:52:50 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:11:01 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,13 @@ int			builtin_exec(t_command *command)
 {
 	char	**args;
 	int		code;
-
+	
+	code = 0;
 	args = args_create(command->args);
 	if (!ft_strcmp("echo", command->args->content))
 		code = echo(args + 1);
 	else if (!ft_strcmp("pwd", command->args->content))
-		code = pwd(args + 1);
+		code = pwd();
 	else if (!ft_strcmp("cd", command->args->content))
 		code = cd(args + 1);
 	else if (!ft_strcmp("env", command->args->content))

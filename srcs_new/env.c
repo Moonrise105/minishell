@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:19:54 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:29:40 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:08:48 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int			unset(char **av)
 {
 	t_list	*dict;
 	int		i;
-	char	**env;
 
 	i = 0;
 	dict = env_get(NULL);

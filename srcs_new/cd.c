@@ -6,7 +6,7 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 02:22:13 by moonrise          #+#    #+#             */
-/*   Updated: 2021/03/06 16:53:06 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:10:35 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			cd_chdir(char *path, t_list *dict, char **args)
 	return (0);
 }
 
-int			cd_tilda(t_list *dict, char **args, char **path)
+int			cd_tilda(t_list *dict, char **path)
 {
 	t_pair	*home;
 
@@ -86,16 +86,14 @@ int			cd_minus(t_list *dict, char **path)
 int			cd(char **args)
 {
 	t_list		*dict;
-	char		**env;
 	char		*path;
-	t_pair		*old_pwd;
 	int			code;
 
 	path = NULL;
 	dict = env_get(NULL);
 	if (!args[0])
 	{
-		if (cd_tilda(dict, args, &path) == 1)
+		if (cd_tilda(dict, &path) == 1)
 			return (1);
 	}
 	else if (!ft_strcmp(args[0], "-"))

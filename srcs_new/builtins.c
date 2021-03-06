@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 15:10:42 by ctobias           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/03/06 16:58:33 by ctobias          ###   ########.fr       */
-=======
-/*   Updated: 2021/03/06 16:58:28 by olydden          ###   ########.fr       */
->>>>>>> 53eea8371c6f19586f44b5b97ee56206c0c535c1
+/*   Updated: 2021/03/06 17:10:46 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		pwd(char **args)
+int		pwd(void)
 {
 	char dir[500];
 
@@ -46,7 +42,6 @@ int		my_exit(char **args)
 {
 	int		i;
 	int		code;
-	char	*c;
 
 	i = 0;
 	if (args)

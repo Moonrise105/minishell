@@ -6,7 +6,7 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:02:51 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:54:09 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:07:55 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_list		*pipe_handler(t_list *commands)
 	int count;
 	int *pipe_fd;
 
+	pipe_fd = NULL;
 	count = pipe_count(commands);
 	pid = fork();
 	if (pid > 0)
@@ -47,7 +48,6 @@ t_list		*right_redir_handler(t_list *commands, int *pipe_fd, int prev_jmp)
 {
 	t_command	*command;
 	t_command	*first_cmd;
-	int			fd;
 	t_command	*prev_command;
 	t_list		*prev_commands;
 
@@ -74,7 +74,6 @@ t_list		*left_redir_handler(t_list *commands)
 	t_command	*command;
 	t_list		*first_commands;
 	int			err;
-	int			fd;
 	int			dup_fd[2];
 
 	commands = left_redir(commands, &err, &first_commands);
