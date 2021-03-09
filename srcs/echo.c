@@ -3,35 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: moonrise <moonrise@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:29:05 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 17:08:02 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/09 18:30:38 by moonrise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int		is_flag(char *str)
+{
+	int		i;
+
+	if (ft_strncmp("-n", str, 2))
+		return (0);
+	i = 2;
+	while (str[i])
+	{
+		if (str[i] != 'n')
+			return (0);
+		++i;
+	}
+	return (1);
+}
+
 int		echo_flag(int *i, char **av)
 {
-	int		j;
 	int		flag;
 
 	flag = 1;
-	while (av[*i] && !ft_strncmp(av[*i], "-n", 2))
+	while (is_flag(av[*i]))
 	{
-		j = 2;
-		while (av[*i][j])
-		{
-			if (av[*i][j] != 'n')
-			{
-				flag = 0;
-				break ;
-			}
-			++j;
-		}
-		if (!flag)
-			break ;
 		flag = 0;
 		++(*i);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manager.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: moonrise <moonrise@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:56:25 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 17:22:46 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/09 18:43:41 by moonrise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,19 @@
 int		manager(t_list *commands)
 {
 	t_command	*command;
-	t_list		*tmp;
 	int			code;
 
 	while (commands)
 	{
 		signal(SIGINT, SIG_DFL);
 		command = commands->content;
+		parse_args(command->args);
 		if (command->jmp_type == 0 || command->jmp_type == -1)
 			code = semicolon_handler(command);
 		else if (command->jmp_type == 1)
 		{
-			tmp = find_left_redir(commands);
-			if (tmp)
-				commands = left_redir_handler(tmp);
+			if (find_left_redir(commands))
+				commands = left_redir_handler(find_left_redir(commands));
 			else
 				commands = pipe_handler(commands);
 		}
