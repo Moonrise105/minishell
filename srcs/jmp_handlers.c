@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jmp_handlers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: moonrise <moonrise@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:02:51 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 17:07:55 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/07 15:13:28 by moonrise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ t_list		*right_redir_handler(t_list *commands, int *pipe_fd, int prev_jmp)
 {
 	t_command	*command;
 	t_command	*first_cmd;
-	t_command	*prev_command;
 	t_list		*prev_commands;
 
 	command = commands->content;
@@ -62,7 +61,6 @@ t_list		*right_redir_handler(t_list *commands, int *pipe_fd, int prev_jmp)
 		if (right_redir(pipe_fd, prev_jmp, first_cmd, prev_commands))
 			return (commands);
 		prev_commands = commands;
-		prev_command = command;
 		commands = commands->next;
 		command = commands->content;
 	}

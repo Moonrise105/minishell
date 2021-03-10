@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olydden <olydden@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: moonrise <moonrise@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 19:57:02 by olydden           #+#    #+#             */
-/*   Updated: 2021/02/24 15:10:57 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/07 15:14:53 by moonrise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	if (!write(1, &c, 1))
+		return (-1);
 	return (1);
 }

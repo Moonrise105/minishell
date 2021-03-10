@@ -6,7 +6,7 @@
 /*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:08:30 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 17:31:46 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/10 15:34:40 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int			execute_in(t_command *command)
 	int code;
 
 	type = get_cmd_exec_type(command->args->content);
-	parse_args(command->args);
 	if (type == BIN_TYPE)
 	{
 		code = bin_exec(command);

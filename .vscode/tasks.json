@@ -1,24 +1,27 @@
 {
-    "version": "2.0.0",
     "tasks": [
         {
-            "label": "msvc build",
-            "type": "shell",
-            "command": "",
+            "type": "cppbuild",
+            "label": "C/C++: gcc-7 сборка активного файла",
+            "command": "/usr/bin/gcc-7",
             "args": [
-                "make",
-                "--directory=${workspaceFolder};",
-                "./minishell",
-                "--directory=${workspaceFolder};"
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
             ],
-            "group":  {
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "presentation": {
-                "reveal":"always"
-            },
-            "problemMatcher": "$msCompile"
+            "detail": "Задача создана отладчиком."
         }
-    ]
+    ],
+    "version": "2.0.0"
 }

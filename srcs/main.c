@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: moonrise <moonrise@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:59:55 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 17:05:02 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/09 18:30:53 by moonrise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,16 @@ int			read_command(t_parser *parser_struct)
 		signal(SIGINT, signal_interrupt);
 		signal(SIGQUIT, signal_quit);
 		read_bytes = read(0, &input, 1);
-		code = parser(parser_struct, input);
-		if (read_bytes && !code)
-			return (READ_END);
-		else if (!read_bytes && !input)
-			return (READ_EXIT);
-		else if (!read_bytes)
+		if (!read_bytes && input)
 			eof_ign();
+		else
+		{
+			code = parser(parser_struct, input);
+			if (read_bytes && !code)
+				return (READ_END);
+			else if (!read_bytes && !input)
+				return (READ_EXIT);
+		}
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_specifier.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olydden <olydden@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: moonrise <moonrise@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 21:39:06 by olydden           #+#    #+#             */
-/*   Updated: 2020/08/10 21:50:18 by olydden          ###   ########.fr       */
+/*   Updated: 2021/03/09 20:03:25 by moonrise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,9 @@ int		p1_specifier(t_flags *p_t_flags, char **pointer, unsigned long long p,
 {
 	int printed;
 	int counter;
-	int	null;
 
 	printed = 0;
 	counter = 0;
-	null = p_t_flags->precision - ft_strlen(*pointer);
 	if (p_t_flags->minus)
 	{
 		if (p)

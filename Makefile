@@ -4,11 +4,11 @@ CC = gcc
 
 HEADER = includes
 
-FLAGS_C = -g3 -Wall -Wextra -Werror
+FLAGS_C = -Wall -Wextra -Werror
 
 DIR_LIBFT = libft
 
-DIR_S = srcs_new
+DIR_S = srcs
 
 DIR_O = objs
 
@@ -47,11 +47,11 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C $(DIR_LIBFT) -j 4
-	@$(CC) -o $@ $^ $(DIR_LIBFT)/libft.a
+	$(CC) -o $@ $^ $(DIR_LIBFT)/libft.a
 
 $(DIR_O)/%.o: $(DIR_S)/%.c $(HEADER)/minishell.h
 	@mkdir -p $(DIR_O) $(DIR_O)/parser $(DIR_O)/parser/utils $(DIR_O)/dict $(DIR_O)/parser/arg_parser $(DIR_O)/execute
-	@$(CC) $(FLAGS_C) -I $(HEADER) -c $< -o $@
+	$(CC) $(FLAGS_C) -I $(HEADER) -c $< -o $@
 
 clean:
 	@rm -rf $(DIR_O)
