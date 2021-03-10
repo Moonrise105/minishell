@@ -4,7 +4,7 @@ CC = gcc
 
 HEADER = includes
 
-FLAGS_C = -Wall -Wextra -Werror
+FLAGS_C = -Wall -Wextra -Werror -g
 
 DIR_LIBFT = libft
 

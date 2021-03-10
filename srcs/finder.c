@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   finder.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moonrise <moonrise@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:07:42 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/09 15:59:31 by moonrise         ###   ########.fr       */
+/*   Updated: 2021/03/10 15:58:59 by ctobias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,15 @@ char	*parse_dirs(char **dirs, char *file)
 		while (dirs[i])
 		{
 			dir = opendir(dirs[i]);
-			if (find_file(dir, file))
+			if (dir)
 			{
+				if (find_file(dir, file))
+				{
+					closedir(dir);
+					return (dirs[i]);
+				}
 				closedir(dir);
-				return (dirs[i]);
 			}
-			closedir(dir);
 			++i;
 		}
 	}
