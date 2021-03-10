@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moonrise <moonrise@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:55:19 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/07 15:13:40 by moonrise         ###   ########.fr       */
+/*   Updated: 2021/03/10 17:06:36 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int				right_redir(int *pipe_fd, int prev_jmp,
 
 	commands = prev_commands->next;
 	command = commands->content;
+	parse_args(command->args);
 	if (ft_strchr("23", command->jmp_type + '0'))
 	{
 		fd = open(command->args->content, O_RDWR | O_CREAT | O_TRUNC, 0644);
@@ -110,6 +111,7 @@ t_list			*left_redir(t_list *commands, int *err, t_list **first_commands)
 		if (commands)
 		{
 			command = commands->content;
+			parse_args(command->args);
 			if (lstat(command->args->content, &buf) < 0 && !(*err))
 			{
 				*err = 1;

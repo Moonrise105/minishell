@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_01.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 20:08:30 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/10 16:01:35 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/10 16:30:32 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int			execute_in(t_command *command)
 	int type;
 	int code;
 
-	parse_args(command->args);
 	type = get_cmd_exec_type(command->args->content);
 	if (type == BIN_TYPE)
 	{

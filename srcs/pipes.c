@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:49:38 by ctobias           #+#    #+#             */
-/*   Updated: 2021/03/06 16:51:59 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/10 16:28:37 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	pipe_first(t_list *commands, int *pipe_fd)
 	t_command *command;
 
 	command = commands->content;
+	parse_args(command->args);
 	close(pipe_fd[1]);
 	waitpid(-1, &g_status, 0);
 	if (WIFSIGNALED(g_status))
@@ -53,6 +54,7 @@ void	pipe_first(t_list *commands, int *pipe_fd)
 
 void	pipe_in(t_command *command, int *pipe_fd, int *pipe_fd_new)
 {
+	parse_args(command->args);
 	close(pipe_fd[0]);
 	close(pipe_fd_new[1]);
 	waitpid(-1, &g_status, 0);

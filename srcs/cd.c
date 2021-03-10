@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctobias <ctobias@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olydden <olydden@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 02:22:13 by moonrise          #+#    #+#             */
-/*   Updated: 2021/03/06 17:10:35 by ctobias          ###   ########.fr       */
+/*   Updated: 2021/03/10 16:58:14 by olydden          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		cd_pwd_set(t_list *dict, char *dir, char *path, char **args)
+void		cd_pwd_set(t_list *dict, char *path, char **args)
 {
 	char	*tmp;
 	t_pair	*pwd;
+	char	*dir;
 
+	dir = NULL;
 	pwd = dict_get(dict, "PWD");
 	if (pwd)
 	{
@@ -28,24 +30,21 @@ void		cd_pwd_set(t_list *dict, char *dir, char *path, char **args)
 		dict_set(dict, "OLDPWD", "");
 	dir = getcwd(dir, 100);
 	dict_set(dict, "PWD", dir);
+	if (dir)
+		free(dir);
 	if (args[0] && !ft_strcmp(args[0], "-"))
 		print_newline(path, 1);
 }
 
 int			cd_chdir(char *path, t_list *dict, char **args)
 {
-	char	*dir;
-
-	dir = NULL;
 	if (chdir(path) < 0)
 	{
 		chdir_error(path);
 		return (1);
 	}
 	else
-		cd_pwd_set(dict, dir, path, args);
-	if (dir)
-		free(dir);
+		cd_pwd_set(dict, path, args);
 	return (0);
 }
 
